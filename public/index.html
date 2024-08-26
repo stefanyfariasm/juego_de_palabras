@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Palabras</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+      .welcome h1 {
+        font-size: 2.5em;
+        margin-bottom: 0.5em;
+      }
+
+      .welcome p {
+        font-size: 1.2em;
+        margin-bottom: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Mensaje de bienvenida que se muestra mientras se espera a que comience el juego -->
+    <div id="welcome" class="welcome">
+      <h1>Bienvenido al juego de palabras</h1>
+      <p id="categoryDisplay"></p>
+      <p>En este juego, cada equipo verá una palabra con solo la primera y la última letra visibles. Tienen 50 segundos para adivinar la palabra correcta. El equipo que adivine más palabras correctamente en el tiempo dado, ganará.</p>
+      <p>Por favor, espera a que comience el juego.</p>
+    </div>
+    <!-- Área del juego que se muestra cuando el juego está en curso -->
+    <div id="game" class="hidden">
+      <h1>Juego de Palabras</h1>
+      <div id="timer">Tiempo restante: 50s</div>
+      <div id="word"></div>
+      <input type="text" id="guess" placeholder="Escribe tu adivinanza">
+      <button id="submit">Enviar</button>
+      <div id="score">
+        <h2>Puntuaciones</h2>
+        <ul id="scoreList"></ul>
+      </div>
+    </div>
+    <!-- Panel de resultados finales que se muestra al finalizar el juego -->
+    <div id="endGame" class="hidden">
+      <h2 id="finalScore">Fin del juego</h2>
+      <ul id="finalScoreList"></ul>
+    </div>
+    <!-- Mensaje para el reinicio del juego -->
+    <div id="message" class="hidden"></div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>

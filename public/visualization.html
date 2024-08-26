@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Score Visualization</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('fondoazul.jpg') no-repeat center center fixed; /* Ruta de la imagen de fondo */
+            background-size: cover;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: left;
+            background-color: rgba(2, 136, 209, 0.8); /* Fondo azul oscuro con transparencia */
+            color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para la cabecera */
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .tower {
+            display: inline-block;
+            width: 80px;
+            margin: 0 15px;
+            position: relative;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .tower-level {
+            background-color: #4fc3f7; /* Azul claro para los niveles */
+            width: 100%;
+            height: 25px;
+            margin-bottom: 4px;
+        }
+
+        .tower-name {
+            position: absolute;
+            bottom: -40px;
+            width: 100%;
+            text-align: center;
+            color: #01579b; /* Texto azul oscuro */
+            font-weight: bold;
+            font-size: 16px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 4px;
+            padding: 4px 0;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px; /* Espacio entre botones */
+        }
+
+        .controls button {
+            background-color: #0288d1; /* Botones azules */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para los botones */
+        }
+
+        .controls button:hover {
+            background-color: #0277bd; /* Color más oscuro al pasar el cursor */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Puntuaciones en Tiempo Real</h1>
+        <div class="controls">
+            <button id="startButton">Start</button>
+            <button id="restartButton">Restart</button>
+        </div>
+    </div>
+    
+    <div id="towers"></div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+        const playerColors = {};
+
+        socket.on('updateScore', (scores) => {
+            const towersDiv = document.getElementById('towers');
+            towersDiv.innerHTML = ''; // Limpia las torres existentes
+
+            for (const userId in scores) {
+                const tower = document.createElement('div');
+                tower.classList.add('tower');
+                
+                if (!playerColors[userId]) {
+                    playerColors[userId] = `hsl(${Math.random() * 360}, 70%, 70%)`;
+                }
+                tower.style.backgroundColor = playerColors[userId];
+                
+                const score = scores[userId].score;
+                const levelHeight = 25;
+                const spacing = 4;
+                const totalHeight = score * (levelHeight + spacing) - spacing;
+                
+                for (let i = 0; i < score; i++) {
+                    const level = document.createElement('div');
+                    level.classList.add('tower-level');
+                    level.style.height = `${levelHeight}px`;
+                    tower.appendChild(level);
+                }
+                
+                tower.style.height = `${totalHeight}px`;
+                
+                const towerName = document.createElement('div');
+                towerName.classList.add('tower-name');
+                towerName.textContent = scores[userId].name;
+                
+                tower.appendChild(towerName);
+                towersDiv.appendChild(tower);
+            }
+        });
+
+        // Event listeners for Start and Restart buttons
+        document.getElementById('startButton').addEventListener('click', () => {
+            socket.emit('startCommand'); // Emit 'startCommand' to the server
+        });
+
+        document.getElementById('restartButton').addEventListener('click', () => {
+            socket.emit('restartCommand'); // Emit 'restartCommand' to the server
+        });
+    </script>
+</body>
+</html>

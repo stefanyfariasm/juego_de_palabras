@@ -1,0 +1,130 @@
+/* Estilos generales */
+body {
+    font-family: Lato, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background: url('fondoazul.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+}
+
+.hidden {
+    display: none;
+}
+
+.welcome {
+    padding: 20px;
+    background-color: #b3e5fc; /* Fondo azul para el cuadro de bienvenida */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    margin: 40px auto;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 8px;
+}
+
+#game {
+    padding: 20px;
+}
+
+#timer {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #0277bd; /* Color azul del temporizador */
+}
+
+#word {
+    font-size: 3em;
+    background-color: #b3e5fc; /* Fondo del cuadro de la palabra */
+    color: #01579b; /* Color de la palabra */
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para el cuadro */
+    display: inline-block;
+}
+
+#guess {
+    font-size: 1em;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #81d4fa;
+    width: 60%;
+}
+
+#submit {
+    font-size: 1em;
+    padding: 10px 20px;
+    background-color: #0288d1; /* Color de fondo del botón */
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#submit:hover {
+    background-color: #0277bd; /* Color al pasar el cursor */
+}
+
+#score {
+    margin-top: 30px;
+}
+
+#score h2 {
+    color: #0277bd; /* Color del título de puntuaciones */
+}
+
+#scoreList,
+#finalScoreList {
+    list-style: none;
+    padding: 0;
+    margin: 20px auto;
+    max-width: 600px;
+    text-align: left;
+    font-size: 1.2em;
+    background-color: #e1f5fe; /* Fondo de la lista */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    padding: 10px 20px;
+}
+
+#scoreList li,
+#finalScoreList li {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #b3e5fc; /* Fondo de cada ítem */
+    border-radius: 4px;
+}
+
+#endGame h2 {
+    color: #01579b; /* Color del título final */
+    margin-bottom: 20px;
+}
+
+#finalScoreList li {
+    background-color: #e0f7fa; /* Fondo diferente para las puntuaciones finales */
+}
+
+#message {
+    padding: 20px;
+    background-color: #0288d1;
+    color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    margin: 40px auto;
+    width: 80%;
+    max-width: 600px;
+}
+
+#categoryDisplay {
+    font-size: 2em;
+    background-color: #b3e5fc; /* Fondo del cuadro de la categoría */
+    color: #01579b; /* Color del texto de la categoría */
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para el cuadro */
+    display: inline-block;
+}
